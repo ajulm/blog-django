@@ -1,0 +1,82 @@
+<!-- blog/templates/blog/post_list.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Blog Post List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+        }
+        .header {
+            text-align: center;
+            padding: 20px 0;
+            background: #333;
+            color: #fff;
+        }
+        .post-item {
+            background: #fff;
+            margin: 20px 0;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+        }
+        .post-image img {
+            max-width: 150px;
+            margin-right: 20px;
+            border-radius: 8px;
+        }
+        .post-content {
+            flex: 1;
+        }
+        .post-title {
+            font-size: 24px;
+            margin: 0 0 10px;
+        }
+        .post-title a {
+            text-decoration: none;
+            color: #333;
+        }
+        .post-title a:hover {
+            text-decoration: underline;
+        }
+        .post-description {
+            font-size: 16px;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Blog Post List</h1>
+    </div>
+    <div class="container">
+        <ul>
+            {% for post in posts %}
+                <li class="post-item">
+                    <div class="post-image">
+                        {% if post.featured_image %}
+                            <img src="{{ post.featured_image.url }}" alt="{{ post.title }}">
+                        {% endif %}
+                    </div>
+                    <div class="post-content">
+                        <h2 class="post-title">
+                            <a href="{% url 'post_detail' post.slug %}">{{ post.title }}</a>
+                        </h2>
+                        <p class="post-description">{{ post.description }}</p>
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>
