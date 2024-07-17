@@ -1,7 +1,6 @@
 import uuid
 from django.db import models
 # from ckeditor.fields import RichTextField
-from django_ckeditor_5.fields import CKEditor5Field
 
 from django.utils.text import slugify
 from django.db.models.signals import pre_save
@@ -11,7 +10,7 @@ class Post(models.Model):
     description = models.TextField()
     featured_image = models.ImageField(upload_to='featured_images/')
     slug = models.SlugField(unique=True)
-    content = CKEditor5Field('Content', config_name='extends')
+    content = models.TextField('Content')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
